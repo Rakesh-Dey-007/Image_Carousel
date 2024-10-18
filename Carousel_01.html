@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Images/RD_Logo.png" type="image/x-icon">
+    <title>𝚁𝙳 𝙲𝚘𝚍𝚎𝙵𝚕𝚊𝚒𝚛</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-content: center;
+            background: linear-gradient(135deg, black, rgb(0, 0, 50));
+            overflow: hidden;
+        }
+
+        /* Updated to handle 7 images */
+        .gallery {
+            --d: 14s;
+            /* Adjust the duration to fit more images smoothly */
+            display: grid;
+            width: 220px;
+        }
+
+        .gallery>img {
+            grid-area: 1/1;
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border: 10px solid #f2f2f2;
+            box-shadow: 0 0 4px #0007;
+            z-index: 2;
+            animation:
+                slide var(--d) infinite,
+                z-order var(--d) infinite steps(1);
+        }
+
+        .gallery img:last-child {
+            animation-name: slide, z-order-last;
+        }
+
+        /* Set animation delays manually for each image (adjusted for 7 images) */
+        .gallery>img:nth-child(1) {
+            animation-delay: calc(0/7 * var(--d));
+            --r: -20deg;
+        }
+
+        .gallery>img:nth-child(2) {
+            animation-delay: calc(-1/7 * var(--d));
+            --r: 15deg;
+        }
+
+        .gallery>img:nth-child(3) {
+            animation-delay: calc(-2/7 * var(--d));
+            --r: 10deg;
+        }
+
+        .gallery>img:nth-child(4) {
+            animation-delay: calc(-3/7 * var(--d));
+            --r: -10deg;
+        }
+
+        .gallery>img:nth-child(5) {
+            animation-delay: calc(-4/7 * var(--d));
+            --r: 5deg;
+        }
+
+        .gallery>img:nth-child(6) {
+            animation-delay: calc(-5/7 * var(--d));
+            --r: -15deg;
+        }
+
+        .gallery>img:nth-child(7) {
+            animation-delay: calc(-6/7 * var(--d));
+            --r: 20deg;
+        }
+
+        /* Animations for image sliding and z-index ordering (adjusted for 7 images) */
+        @keyframes slide {
+            14.3% {
+                transform: translateX(120%) rotate(var(--r))
+            }
+
+            0%,
+            100%,
+            28.6% {
+                transform: translateX(0%) rotate(var(--r))
+            }
+        }
+
+        @keyframes z-order {
+            14.3%,
+            28.6% {
+                z-index: 1
+            }
+
+            85.7% {
+                z-index: 2
+            }
+        }
+
+        @keyframes z-order-last {
+            14.3%,
+            28.6% {
+                z-index: 1
+            }
+
+            85.7% {
+                z-index: 2
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gallery">
+        <img src="https://i.pinimg.com/736x/26/f4/3b/26f43b912ee2bf2011ade60741199cee.jpg" alt="Krishna">
+        <img src="https://wallpapercave.com/wp/wp4827746.jpg" alt="Lord Krishna">
+        <img src="https://wallpapers.com/images/hd/mahabharat-krishna-avatar-k5j9padfjudqn5xr.jpg" alt="Krishna Lying">
+        <img src="https://images.herzindagi.info/image/2024/Feb/krishna-quotes.jpg" alt="a girl in the forest">
+        <img src="https://cdn.lazyshop.com/files/84d84f33-5cbd-4cd2-8c63-4a3789e49cfc/product/226b110a4d90be54fe3e6bb72e2edd7f.jpeg?x-oss-process=style%2Fthumb"
+            alt="a girl">
+        <img src="https://idolkart.com/cdn/shop/articles/wife_of_krishna.jpg?v=1700211543&width=1500" alt="Radha Krishna">
+        <img src="https://t4.ftcdn.net/jpg/05/60/61/87/360_F_560618763_9oiYMrdHTNg55vR7VEXBb1w9F98kZMQp.jpg"
+            alt="Krishna Flute">
+    </div>
+
+</body>
+
+</html>
