@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="Images/RD_Logo.png" type="image/x-icon">
+    <title>𝚁𝙳 𝙲𝚘𝚍𝚎𝙵𝚕𝚊𝚒𝚛</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script src="script.js" defer></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Kalam:wght@300;400;700&display=swap');
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, black, rgb(10, 0, 46));
+        }
+
+        .wrapper {
+            display: flex;
+            max-width: 650px;
+            width: 100%;
+            height: 400px;
+            background: #8b8b8b;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper i.button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 36px;
+            width: 36px;
+            background-color: #343f4f;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s linear;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        i.button:active {
+            transform: scale(0.94) translateY(-50%);
+        }
+
+        i#prev {
+            left: 25px;
+        }
+
+        i#next {
+            right: 25px;
+        }
+
+        .image-container {
+            height: 320px;
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .image-container .carousel {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .carousel img {
+            height: 100%;
+            width: 100%;
+            border-radius: 18px;
+            border: 10px solid #fff;
+            object-fit: cover;
+        }
+
+        .author {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: cyan;
+            font-family: "Chakra Petch", serif;
+        }
+
+        .heading{
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: cyan;
+            font-family: "Chakra Petch", serif;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="heading">Animated Image Slider</h1>
+    <section class="wrapper">
+        <i class="fa-solid fa-arrow-left button" id="prev"></i>
+        <div class="image-container">
+            <div class="carousel">
+                <img src="https://as2.ftcdn.net/v2/jpg/08/30/83/69/1000_F_830836989_OLKVWXX9jt9ZhiuTACAV6FsAiYS3PLj0.jpg"
+                    alt="" />
+                <img src="https://as2.ftcdn.net/v2/jpg/09/84/47/57/1000_F_984475765_6rw9a3EIdn811JxxuaDgYhnVOL3Zbr88.jpg"
+                    alt="" />
+                <img src="https://img.freepik.com/premium-photo/lake-with-rocks-trees-background_1262781-23819.jpg?ga=GA1.1.2137025732.1726569969&semt=ais_hybrid"
+                    alt="" />
+                <img src="https://as2.ftcdn.net/v2/jpg/07/60/24/05/1000_F_760240558_HczVwdpuYr3AIPfIR1aBsBAzYP06wZNx.jpg"
+                    alt="" />
+                <img src="https://as2.ftcdn.net/v2/jpg/04/84/37/87/1000_F_484378794_K41drFemxh6odHsNAiq7mNGI2Ro3a87q.jpg"
+                    alt="" />
+                <img src="https://as2.ftcdn.net/v2/jpg/08/87/41/79/1000_F_887417944_g79RsZthnN6fbvFXXBkibVwBBHX6kRW8.jpg"
+                    alt="" />
+            </div>
+            <i class="fa-solid fa-arrow-right button" id="next"></i>
+        </div>
+    </section>
+    <h1 class="author">RD CodeFlair</h1>
+
+    <script>
+        // Get the DOM elements for the image carousel
+        const wrapper = document.querySelector(".wrapper"),
+            carousel = document.querySelector(".carousel"),
+            images = document.querySelectorAll("img"),
+            buttons = document.querySelectorAll(".button");
+
+        let imageIndex = 1,
+            intervalId;
+
+        // Define function to start automatic image slider
+        const autoSlide = () => {
+            // Start the slideshow by calling slideImage() every 2 seconds
+            intervalId = setInterval(() => slideImage(++imageIndex), 2000);
+        };
+        // Call autoSlide function on page load
+        autoSlide();
+
+        // A function that updates the carousel display to show the specified image
+        const slideImage = () => {
+            // Calculate the updated image index
+            imageIndex = imageIndex === images.length ? 0 : imageIndex < 0 ? images.length - 1 : imageIndex;
+            // Update the carousel display to show the specified image
+            carousel.style.transform = `translate(-${imageIndex * 100}%)`;
+        };
+
+        // A function that updates the carousel display to show the next or previous image
+        const updateClick = (e) => {
+            // Stop the automatic slideshow
+            clearInterval(intervalId);
+            // Calculate the updated image index based on the button clicked
+            imageIndex += e.target.id === "next" ? 1 : -1;
+            slideImage(imageIndex);
+            // Restart the automatic slideshow
+            autoSlide();
+        };
+
+        // Add event listeners to the navigation buttons
+        buttons.forEach((button) => button.addEventListener("click", updateClick));
+
+        // Add mouseover event listener to wrapper element to stop auto sliding
+        wrapper.addEventListener("mouseover", () => clearInterval(intervalId));
+        // Add mouseleave event listener to wrapper element to start auto sliding again
+        wrapper.addEventListener("mouseleave", autoSlide);
+    </script>
+</body>
+
+</html>
